@@ -1,0 +1,15 @@
+{
+  "item.waterupgrade.drinking_upgrade": "饮水升级",
+  "item.waterupgrade.drinking_upgrade.tooltip": "使用背包中的饮水物品为玩家补充水分",
+  "item.waterupgrade.advanced_drinking_upgrade": "高级饮水升级",
+  "item.waterupgrade.advanced_drinking_upgrade.tooltip": "使用背包中的饮水物品为玩家补充水分\n拥有更多关于饮水时机的选项",
+  "gui.waterupgrade.upgrades.drinking": "饮水",
+  "gui.waterupgrade.upgrades.drinking.tooltip": "饮水设置",
+  "gui.waterupgrade.upgrades.advanced_drinking": "高级饮水",
+  "gui.waterupgrade.upgrades.advanced_drinking.tooltip": "高级饮水设置",
+  "gui.waterupgrade.upgrades.buttons.thirst_level_any": "当玩家稍微口渴时立即饮水\n浪费饮料提供的大量水分值",
+  "gui.waterupgrade.upgrades.buttons.thirst_level_half": "仅在玩家足够口渴时饮水\n最多浪费饮料提供的一半水分值",
+  "gui.waterupgrade.upgrades.buttons.thirst_level_full": "仅在玩家足够口渴时饮水\n不会浪费饮料提供的任何水分值",
+  "gui.waterupgrade.upgrades.buttons.drink_immediately_when_hurt": "当玩家受伤时立即饮水\n在玩家未达到最大生命值前忽略口渴值",
+  "gui.waterupgrade.upgrades.buttons.do_not_consider_health": "忽略生命值\n忽略玩家的生命值，仅基于口渴值饮水"
+}

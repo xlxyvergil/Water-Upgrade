@@ -1,0 +1,15 @@
+{
+  "item.waterupgrade.drinking_upgrade": "Drinking Upgrade",
+  "item.waterupgrade.drinking_upgrade.tooltip": "Drinks player with water items from backpack's inventory",
+  "item.waterupgrade.advanced_drinking_upgrade": "Advanced Drinking Upgrade",
+  "item.waterupgrade.advanced_drinking_upgrade.tooltip": "Drinks player with water items from backpack's inventory\nMore options for when water gets fed to player",
+  "gui.waterupgrade.upgrades.drinking": "Drinking",
+  "gui.waterupgrade.upgrades.drinking.tooltip": "Drinking Settings",
+  "gui.waterupgrade.upgrades.advanced_drinking": "Advanced Drinking",
+  "gui.waterupgrade.upgrades.advanced_drinking.tooltip": "Advanced Drinking Settings",
+  "gui.waterupgrade.upgrades.buttons.thirst_level_any": "Drink as soon as the player is slightly thirsty\nwastes hydration points of drinks",
+  "gui.waterupgrade.upgrades.buttons.thirst_level_half": "Drink only when the player is sufficiently thirsty\nwastes at most half the hydration of drinks",
+  "gui.waterupgrade.upgrades.buttons.thirst_level_full": "Drink only when the player is sufficiently thirsty\ndoesn't waste any hydration of drinks",
+  "gui.waterupgrade.upgrades.buttons.drink_immediately_when_hurt": "Drink the player immediately when hurt\nIgnores thirst setting when the player isn't at max health",
+  "gui.waterupgrade.upgrades.buttons.do_not_consider_health": "Do not consider health\nIgnores player's health and feeds based on thirst only"
+}

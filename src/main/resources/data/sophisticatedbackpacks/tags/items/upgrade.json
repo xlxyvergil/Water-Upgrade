@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "waterupgrade:drinking_upgrade",
+    "waterupgrade:advanced_drinking_upgrade"
+  ]
+}

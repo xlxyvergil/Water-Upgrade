@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "waterupgrade:item/advanced_drinking_upgrade"
+  }
+}
