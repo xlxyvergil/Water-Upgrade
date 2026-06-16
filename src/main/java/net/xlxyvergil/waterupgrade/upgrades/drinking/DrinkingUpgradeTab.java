@@ -1,13 +1,14 @@
 package net.xlxyvergil.waterupgrade.upgrades.drinking;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.StorageScreenBase;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.UpgradeSettingsTab;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.ButtonDefinition;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.ToggleButton;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.Dimension;
-import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.GuiHelper;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.Position;
+import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.TextureBlitData;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.TranslationHelper;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.UV;
 import net.p3pp3rf1y.sophisticatedcore.upgrades.FilterLogic;
@@ -22,18 +23,24 @@ import static net.p3pp3rf1y.sophisticatedcore.client.gui.controls.ButtonDefiniti
 
 public class DrinkingUpgradeTab extends UpgradeSettingsTab<DrinkingUpgradeContainer> {
 	private static final TranslationHelper TRANSL_HELPER = new TranslationHelper(WaterUpgrade.MODID);
+	private static final ResourceLocation ICONS = new ResourceLocation(WaterUpgrade.MODID, "textures/gui/icons.png");
+
+	private static ToggleButton.StateData buttonIcon(UV uv, String tooltip, Dimension dimension, Position offset) {
+		return new ToggleButton.StateData(new TextureBlitData(ICONS, offset, Dimension.SQUARE_256, uv, dimension),
+				Component.translatable(tooltip));
+	}
 
 	public static final ButtonDefinition.Toggle<ThirstLevel> THIRST_LEVEL = createToggleButtonDefinition(
 			Map.of(
-					ThirstLevel.ANY, GuiHelper.getButtonStateData(new UV(128, 0), TRANSL_HELPER.translUpgradeButton("thirst_level_any"), Dimension.SQUARE_16, new Position(1, 1)),
-					ThirstLevel.HALF, GuiHelper.getButtonStateData(new UV(112, 0), TRANSL_HELPER.translUpgradeButton("thirst_level_half"), Dimension.SQUARE_16, new Position(1, 1)),
-					ThirstLevel.FULL, GuiHelper.getButtonStateData(new UV(96, 0), TRANSL_HELPER.translUpgradeButton("thirst_level_full"), Dimension.SQUARE_16, new Position(1, 1))
+					ThirstLevel.ANY, buttonIcon(new UV(128, 0), TRANSL_HELPER.translUpgradeButton("thirst_level_any"), Dimension.SQUARE_16, new Position(1, 1)),
+					ThirstLevel.HALF, buttonIcon(new UV(112, 0), TRANSL_HELPER.translUpgradeButton("thirst_level_half"), Dimension.SQUARE_16, new Position(1, 1)),
+					ThirstLevel.FULL, buttonIcon(new UV(96, 0), TRANSL_HELPER.translUpgradeButton("thirst_level_full"), Dimension.SQUARE_16, new Position(1, 1))
 			));
 
 	public static final ButtonDefinition.Toggle<Boolean> DRINK_IMMEDIATELY_WHEN_HURT = createToggleButtonDefinition(
 			getBooleanStateData(
-					GuiHelper.getButtonStateData(new UV(96, 16), TRANSL_HELPER.translUpgradeButton("drink_immediately_when_hurt"), Dimension.SQUARE_16, new Position(1, 1)),
-					GuiHelper.getButtonStateData(new UV(112, 16), TRANSL_HELPER.translUpgradeButton("do_not_consider_health"), Dimension.SQUARE_16, new Position(1, 1))
+					buttonIcon(new UV(96, 16), TRANSL_HELPER.translUpgradeButton("drink_immediately_when_hurt"), Dimension.SQUARE_16, new Position(1, 1)),
+					buttonIcon(new UV(112, 16), TRANSL_HELPER.translUpgradeButton("do_not_consider_health"), Dimension.SQUARE_16, new Position(1, 1))
 			));
 
 	protected FilterLogicControl<FilterLogic, FilterLogicContainer<FilterLogic>> filterLogicControl;
