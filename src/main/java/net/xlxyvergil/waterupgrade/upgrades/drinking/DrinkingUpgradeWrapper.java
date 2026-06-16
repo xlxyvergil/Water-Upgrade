@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.p3pp3rf1y.sophisticatedcore.api.IStorageWrapper;
 import net.p3pp3rf1y.sophisticatedcore.inventory.ITrackedContentsItemHandler;
 import net.p3pp3rf1y.sophisticatedcore.upgrades.FilterLogic;
@@ -100,7 +101,7 @@ public class DrinkingUpgradeWrapper extends UpgradeWrapperBase<DrinkingUpgradeWr
 		stack.shrink(1);
 		inventory.setStackInSlot(slot, stack);
 
-		ItemStack resultItem = singleItemCopy.getItem().finishUsingItem(singleItemCopy, level, player);
+		ItemStack resultItem = ForgeEventFactory.onItemUseFinish(player, singleItemCopy.copy(), 0, singleItemCopy.getItem().finishUsingItem(singleItemCopy, level, player));
 		if (!resultItem.isEmpty()) {
 			ItemStack insertResult = inventory.insertItem(resultItem, false);
 			if (!insertResult.isEmpty()) {
