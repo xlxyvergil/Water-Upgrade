@@ -1,10 +1,13 @@
 package net.xlxyvergil.waterupgrade.compat.thirst;
 
-import homeostatic.common.item.DrinkableItemManager;
+import homeostatic.common.Hydration;
 import homeostatic.common.water.WaterInfo;
 import homeostatic.platform.Services;
+import homeostatic.util.WaterHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 
 public class HomeostaticThirstHandler implements IThirstHandler {
 	@Override
@@ -28,7 +31,7 @@ public class HomeostaticThirstHandler implements IThirstHandler {
 
 	@Override
 	public boolean isDrinkableItem(ItemStack stack) {
-		return DrinkableItemManager.get(stack) != null;
+		return WaterHelper.getItemHydration(stack) != null;
 	}
 
 	@Override
@@ -38,18 +41,22 @@ public class HomeostaticThirstHandler implements IThirstHandler {
 
 	@Override
 	public boolean consumeDrinkItem(Player player, ItemStack stack) {
-		homeostatic.common.item.DrinkableItem drinkable = DrinkableItemManager.get(stack);
-		if (drinkable == null) return false;
-		Services.PLATFORM.getWaterCapabilty(player).ifPresent(cap -> {
-			cap.increaseWaterLevel(drinkable.amount());
-			cap.increaseSaturationLevel(drinkable.saturation());
-		});
+		Hydration hydration = WaterHelper.getItemHydration(stack);
+		if (hydration == null) return false;
+		// 手动触发 Finish 事件，让 Homeostatic 自己的 onFinishUsingItem 处理恢复
+		MinecraftForge.EVENT_BUS.post(
+				new LivingEntityUseItemEvent.Finish(player, stack, 32, stack.copy()));
 		return true;
 	}
 
 	@Override
 	public int getConsumableHydration(ItemStack stack) {
-		homeostatic.common.item.DrinkableItem drinkable = DrinkableItemManager.get(stack);
-		return drinkable != null ? drinkable.amount() : 0;
+		Hydration hydration = WaterHelper.getItemHydration(stack);
+		return hydration != null ? hydration.amount() : 0;
+	}
+
+	@Override
+	public boolean handlesFinishEvent() {
+		return true;
 	}
 }

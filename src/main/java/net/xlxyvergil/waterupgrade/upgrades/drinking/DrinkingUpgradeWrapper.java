@@ -101,7 +101,10 @@ public class DrinkingUpgradeWrapper extends UpgradeWrapperBase<DrinkingUpgradeWr
 		stack.shrink(1);
 		inventory.setStackInSlot(slot, stack);
 
-		ItemStack resultItem = ForgeEventFactory.onItemUseFinish(player, singleItemCopy.copy(), 0, singleItemCopy.getItem().finishUsingItem(singleItemCopy, level, player));
+		boolean handlerFiredEvent = handler.handlesFinishEvent();
+		ItemStack resultItem = handlerFiredEvent
+				? singleItemCopy.getItem().finishUsingItem(singleItemCopy, level, player)
+				: ForgeEventFactory.onItemUseFinish(player, singleItemCopy.copy(), 0, singleItemCopy.getItem().finishUsingItem(singleItemCopy, level, player));
 		if (!resultItem.isEmpty()) {
 			ItemStack insertResult = inventory.insertItem(resultItem, false);
 			if (!insertResult.isEmpty()) {

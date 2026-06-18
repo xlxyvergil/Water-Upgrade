@@ -25,4 +25,12 @@ public interface IThirstHandler {
 	 * @return hydration value, or 0 if not a drinkable item
 	 */
 	int getConsumableHydration(ItemStack stack);
+
+	/**
+	 * Whether this handler already fires LivingEntityUseItemEvent.Finish in consumeDrinkItem.
+	 * If true, DrinkingUpgradeWrapper will not fire it again.
+	 */
+	default boolean handlesFinishEvent() {
+		return false;
+	}
 }
